@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Grass from "./Grass";
+import Pikachu from "./Pikachu";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const grassComponents = Array.from({ length: 100 }, (_, index) => (
+    <Grass key={index} />
+  ));
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [translateY, setTranslateY] = useState(0);
+  const [eventCheck, setEventCheck] = useState(false);
+
+  const handleKeyUp = (e) => {
+    if (eventCheck) return;
+
+    setEventCheck(true);
+
+    switch (e.key) {
+      case "ArrowUp":
+        setY((prevY) => (prevY === 0 ? prevY : prevY - 10));
+        break;
+      case "ArrowDown":
+        setY((prevY) => (prevY === 90 ? prevY : prevY + 10));
+        break;
+      case "ArrowLeft":
+        setRotateY(180);
+        setX((prevX) => (prevX === 0 ? prevX : prevX - 10));
+        break;
+      case "ArrowRight":
+        setRotateY(0);
+        setX((prevX) => (prevX === 90 ? prevX : prevX + 10));
+        break;
+      case " ":
+        setTranslateY(-50);
+        setTimeout(() => setTranslateY(0), 300);
+        break;
+      default:
+        break;
+    }
+
+    setTimeout(() => setEventCheck(false), 100);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      document.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [eventCheck]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div
+      id="grass-box"
+      className="relative w-[100vh] h-[100vh] flex items-center flex-wrap bg-black m-auto"
+    >
+      {grassComponents}
+      <Pikachu x={x} y={y} rotateY={rotateY} translateY={translateY} />
+    </div>
+  );
 }
 
-export default App
+export default App;
