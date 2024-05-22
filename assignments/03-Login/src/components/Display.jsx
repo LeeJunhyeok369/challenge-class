@@ -1,0 +1,13 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
+export default function Display() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const status = isLoggedIn ? "로그인" : "로그아웃";
+
+  return (
+    <div style={{ borderBottom: "1px solid black" }}>
+      <p>현재 {status} 상태입니다.</p>
+    </div>
+  );
+}
