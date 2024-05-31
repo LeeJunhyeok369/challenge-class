@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./reset.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="flex items-center justify-center h-full w-full">
+      <div className="w-80 flex flex-col gap-y-6 items-center justify-center">
+        <h1 className="text-2xl font-semibold text-center">토스트 컨트롤러</h1>
+        <div className="flex flex-col gap-y-4 items-start w-full">
+          <div className="flex flex-col gap-y-1.5 items-start w-full">
+            <label type="text" className="text-sm font-medium">
+              awd
+            </label>
+            <input
+              type="text"
+              className="border px-4 py-3 rounded-md w-full"
+              value="AWdaw"
+            />
+          </div>
+          <div className="flex flex-col gap-y-1.5 items-start w-full">
+            <label type="text" className="text-sm font-medium">
+              awd
+            </label>
+            <input type="text" className="border px-4 py-3 rounded-md w-full" />
+          </div>
+          <div className="flex flex-col gap-y-1.5 items-start w-full">
+            <label type="text" className="text-sm font-medium">
+              awd
+            </label>
+            <input type="text" className="border px-4 py-3 rounded-md w-full" />
+          </div>
+        </div>
+        <button className="text-center text-white bg-black w-full py-3.5 text-[15px] rounded-md font-medium hover:bg-black/80 transition active:bg-black/70 cursor-pointer">
+          토스트 띄우기
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
