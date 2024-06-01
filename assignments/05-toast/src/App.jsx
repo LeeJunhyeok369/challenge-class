@@ -1,14 +1,16 @@
+import { useToast } from "./Hooks/toast.hook";
 import Input from "./components/Input";
 import "./reset.css";
-
 function App() {
+  const addTost = useToast();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      e.target.title.value,
-      e.target.content.value,
-      e.target.time.value
-    );
+    const title = e.target.title.value;
+    const content = e.target.content.value;
+    const time = e.target.time.value ? Number(e.target.time.value) : 2000;
+
+    addTost(title, content, time);
   };
 
   return (
