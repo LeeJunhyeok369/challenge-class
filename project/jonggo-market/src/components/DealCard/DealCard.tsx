@@ -1,5 +1,5 @@
 import { SDeal } from "@/schemas/Deal.schema";
-import { Image } from "next/image";
+import Image from "next/image";
 
 interface DealCardProps {
   deal: SDeal;
@@ -7,10 +7,11 @@ interface DealCardProps {
 
 function DealCard({ deal }: DealCardProps) {
   const { title, imgURL, price, location, likesCount } = deal;
+
   return (
     <div>
       <div className="relative aspect-square">
-        <Image className="object-cover" src={imgURL} alt={title} fill />
+        <Image alt={title} src={imgURL} fill className="object-cover" />
       </div>
       <h6>{title}</h6>
       <div>{price}</div>

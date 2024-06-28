@@ -1,10 +1,10 @@
-import DealCard from "@/components/DealCard/DealCard";
-import Page from "@/components/Page/Page";
+import DealCard from "@/components/DealCard";
+import Page from "@/components/Page";
 import { SDeal } from "@/schemas/Deal.schema";
 import Link from "next/link";
 
 const deal: SDeal = {
-  id: 101,
+  id: 111,
   title: "춘향골 만 원 한 박스 판매함",
   imgURL:
     "https://dnvefa72aowie.cloudfront.net/origin/article/202406/0c3fc4e63d2251a9348b80ddd5a087918089f7b02ec374e49cf9c87a4461fde9_0.webp?f=webp&q=95&s=1440x1440&t=inside",
@@ -20,11 +20,11 @@ export default function HomePage() {
         {Array(9)
           .fill(0)
           .map((_, index) => (
-            <Link href={`/deals/${id}`}>
-              <li key={index}>
+            <li key={index}>
+              <Link href={`/deals/${deal.id}`}>
                 <DealCard deal={deal} />
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
       </ul>
     </Page>

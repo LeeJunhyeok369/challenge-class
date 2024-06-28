@@ -1,9 +1,9 @@
-import Page from "@/components/Page/Page";
+import Page from "@/components/Page";
 import { SDeal } from "@/schemas/Deal.schema";
 import Image from "next/image";
 
 const deal: SDeal<true> = {
-  id: 101,
+  id: 111,
   title: "춘향골 만 원 한 박스 판매함",
   imgURL:
     "https://dnvefa72aowie.cloudfront.net/origin/article/202406/0c3fc4e63d2251a9348b80ddd5a087918089f7b02ec374e49cf9c87a4461fde9_0.webp?f=webp&q=95&s=1440x1440&t=inside",
@@ -20,26 +20,44 @@ const deal: SDeal<true> = {
   viewsCount: 23212,
 };
 
-function DealDeatilPage() {
+function DealDetailPage() {
   return (
     <Page title={deal.title} isTitleHidden>
+      {/* 이미지 */}
       <div className="relative aspect-square">
         <Image
           alt={deal.title}
           src={deal.imgURL}
           fill
           className="object-cover"
+          unoptimized
         />
       </div>
+
+      {/* 판매자 */}
       <div>
-        <div>{deal.seller?.email} </div>
+        <div>{deal.seller.email}</div>
       </div>
+
+      {/* 제목 */}
       <h2>{deal.title}</h2>
-      <div>{deal.content}</div>
+
+      {/* 등록시간 */}
       <div>{deal.createdAt}</div>
-      <div>{deal.viewsCount}</div>
+
+      {/* 가격 */}
+      <div>{deal.price}</div>
+
+      {/* 본문 내용 */}
+      <div>{deal.content}</div>
+
+      {/* 관심 수 / 조회 수 */}
+      <div>
+        <div>{deal.likesCount}</div>
+        <div>{deal.viewsCount}</div>
+      </div>
     </Page>
   );
 }
 
-export default DealDeatilPage;
+export default DealDetailPage;

@@ -5,15 +5,14 @@ export type SDeal<IsDetail extends boolean = false> = {
   price: number;
   location: string;
   likesCount: number;
-} & IsDetail extends true
+} & (IsDetail extends true
   ? {
       seller: {
         avatarImgURL: string;
         email: string;
       };
-
       createdAt: number;
       content: string;
       viewsCount: number;
     }
-  : {};
+  : {});
